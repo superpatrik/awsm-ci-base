@@ -49,37 +49,23 @@ RUN apt-get install -y \
     php7.1-imap \
     php-xdebug \
     php-memcached
-RUN command -v php
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer && \
-    chmod +x /usr/local/bin/composer && \
-    composer self-update --preview
-RUN command -v composer
+RUN mv composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
 
 # PHPUnit
 RUN wget https://phar.phpunit.de/phpunit.phar
 RUN chmod +x phpunit.phar
 RUN mv phpunit.phar /usr/local/bin/phpunit
-RUN command -v phpunit
 
 # Node.js
 RUN curl -sL https://deb.nodesource.com/setup_9.x -o nodesource_setup.sh
 RUN bash nodesource_setup.sh
 RUN apt-get install nodejs -y
-RUN command -v node
-RUN command -v npm
-
 RUN npm install -g bower grunt-cli
 
 # Other
 RUN mkdir ~/.ssh
 RUN touch ~/.ssh_config
-
-# Display versions installed
-RUN php -v
-RUN composer --version
-RUN phpunit --version
-RUN node -v
-RUN npm -v
