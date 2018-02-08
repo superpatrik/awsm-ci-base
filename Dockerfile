@@ -31,16 +31,6 @@ RUN wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp
   && dpkg -i /tmp/libpng12.deb \
   && rm /tmp/libpng12.deb
 
-# Docker
-RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install apt-transport-https ca-certificates curl software-properties-common
-RUN DEBIAN_FRONTEND="noninteractive" curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-RUN DEBIAN_FRONTEND="noninteractive" apt-key fingerprint 0EBFCD88
-RUN DEBIAN_FRONTEND="noninteractive" add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable"
-RUN DEBIAN_FRONTEND="noninteractive" apt-get update && apt-get -y install docker-ce
-
 # PHP
 RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && apt-get update && apt-get install -y php7.1
 RUN apt-get install -y \
