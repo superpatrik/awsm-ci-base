@@ -23,7 +23,9 @@ RUN apt-get install -y \
     nasm \
     libjpeg-dev \
     libpng-dev \
-    sshpass
+    sshpass \
+    ruby \
+    ruby-dev
 
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
